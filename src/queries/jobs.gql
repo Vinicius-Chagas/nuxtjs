@@ -1,0 +1,44 @@
+query GetAllJobs {
+  findAllJobs {
+    id
+    jobTitle
+    jobType
+    location
+    description
+    salary
+    createdAt
+    updatedAt
+  }
+}
+
+query GetOneJob($id: String!) {
+  findOneJob(id: $id) {
+    id
+    jobTitle
+    jobType
+    location
+    description
+    salary
+    createdAt
+    updatedAt
+  }
+}
+
+mutation CreateJob($job: CreateJobInput!) {
+  createJob(job: $job) {
+    id
+    jobTitle
+    jobType
+    location
+    description
+    salary
+  }
+}
+
+mutation DeleteJob($id: String!) {
+  deleteJob(id: $id)
+}
+
+mutation UpdateJob($id: String!, $job: UpdateJobInput!) {
+  updateJob(id: $id, job: $job)
+}

@@ -1,0 +1,41 @@
+query GetAllCompanies {
+  findAllCompanies {
+    id
+    name
+    description
+    email
+    phone
+    createdAt
+    updatedAt
+  }
+}
+
+query GetOneCompany($id: String!) {
+  findOneCompany(id: $id) {
+    id
+    name
+    description
+    email
+    phone
+    createdAt
+    updatedAt
+  }
+}
+
+mutation CreateCompany($company: CreateCompanyInput!) {
+  createCompany(company: $company) {
+    id
+    name
+    description
+    email
+    phone
+  }
+}
+
+mutation DeleteCompany($id: String!) {
+  deleteCompany(id: $id)
+}
+
+mutation UpdateCompany($id: String!, $company: UpdateCompanyInput!) {
+  updateCompany(id: $id, company: $company)
+}

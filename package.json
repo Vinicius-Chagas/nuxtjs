@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "generateGQL": "graphql-codegen --config src/configs/codegen.config.ts"
   },
   "dependencies": {
     "@nuxt/eslint": "1.2.0",
@@ -20,6 +21,11 @@
   },
   "packageManager": "yarn@4.7.0",
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.5",
+    "@graphql-codegen/typescript": "^4.1.5",
+    "@graphql-codegen/typescript-operations": "^4.5.1",
+    "@graphql-codegen/typescript-vue-apollo": "^4.1.1",
+    "@nuxtjs/apollo": "^5.0.0-alpha.14",
     "@nuxtjs/tailwindcss": "^6.13.2",
     "@typescript-eslint/eslint-plugin": "^8.26.1",
     "@typescript-eslint/parser": "^8.26.1",
