@@ -11,6 +11,17 @@ query GetAllJobs {
   }
 }
 
+query GetJobsListing {
+  findAllJobs {
+    id
+    jobTitle
+    jobType
+    location
+    description
+    salary
+  }
+}
+
 query GetOneJob($id: String!) {
   findOneJob(id: $id) {
     id

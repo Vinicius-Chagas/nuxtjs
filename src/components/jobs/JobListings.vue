@@ -3,7 +3,7 @@
     <div class="container-xl lg:container m-auto">
       <h2 class="text-3xl text-green-500 font-bold mb-6 text-center">Browse Jobs</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <JobListing v-for="job in jobs.slice(0, limit || jobs.length)" :key="job.id" :job="job" />
+        <JobListing v-for="job in result?.findAllJobs.slice(0, limit || result?.findAllJobs.length)" :key="job.id" :job="job" />
       </div>
     </div>
   </section>
@@ -17,11 +17,9 @@
 </template>
 
 <script setup lang="ts">
-import JobsData from '@/jobs.json'
-import { ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { useGetJobsListingLazyQuery } from '@/types/graphql';
+import { RouterLink } from 'vue-router';
 
-const jobs = ref(JobsData.jobs)
 defineProps({
   limit: {
     type: Number,
@@ -32,6 +30,11 @@ defineProps({
     default: false,
   },
 })
+
+const { result, load } = useGetJobsListingLazyQuery()
+
+onMounted(() => load())
+
 </script>
 
 <style scoped></style>

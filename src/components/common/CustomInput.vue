@@ -1,12 +1,12 @@
 <template>
     <div class="w-full">
-        <label for="jobType" class="text-black text-sm">{{ modelLabel }}</label>
-        <input id="jobType" type="text" class="w-full rounded-md shadow-sm h-[40px] text-sm text-black" :placeholder="placeHolder" :value="modelValue" @input="handleInput" >
+        <label :for="modelLabel" class="text-black text-sm">{{ modelLabel }}</label>
+        <input :id="modelLabel" type="text" class="w-full rounded-md shadow-sm h-[40px] text-sm text-black" :placeholder="placeHolder" @input="$updateInputValue" >
     </div>
 </template>
 
 <script setup lang="ts">
-const {modelLabel, modelValue, placeHolder} = defineProps({
+defineProps({
     modelLabel: {
         type: String,
         required: true
@@ -23,8 +23,8 @@ const {modelLabel, modelValue, placeHolder} = defineProps({
 
 const emit = defineEmits(['update:modelValue']);
 
-function handleInput(event: Event) {
-  const target = event.target as HTMLInputElement;
-  emit('update:modelValue', target.value);
+const $updateInputValue = (event: Event) => {
+  const input = event.target as HTMLInputElement
+  emit('update:modelValue', input.value)
 }
 </script>

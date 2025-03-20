@@ -179,6 +179,11 @@ export type GetAllJobsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllJobsQuery = { __typename?: 'Query', findAllJobs: Array<{ __typename?: 'Job', id: string, jobTitle: string, jobType: JobType, location: string, description: string, salary: string, createdAt: Date, updatedAt: Date }> };
 
+export type GetJobsListingQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetJobsListingQuery = { __typename?: 'Query', findAllJobs: Array<{ __typename?: 'Job', id: string, jobTitle: string, jobType: JobType, location: string, description: string, salary: string }> };
+
 export type GetOneJobQueryVariables = Exact<{
   id: Scalars['String']['input'];
 }>;
@@ -400,6 +405,38 @@ export function useGetAllJobsLazyQuery(options: VueApolloComposable.UseQueryOpti
   return VueApolloComposable.useLazyQuery<GetAllJobsQuery, GetAllJobsQueryVariables>(GetAllJobsDocument, {}, options);
 }
 export type GetAllJobsQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetAllJobsQuery, GetAllJobsQueryVariables>;
+export const GetJobsListingDocument = gql`
+    query GetJobsListing {
+  findAllJobs {
+    id
+    jobTitle
+    jobType
+    location
+    description
+    salary
+  }
+}
+    `;
+
+/**
+ * __useGetJobsListingQuery__
+ *
+ * To run a query within a Vue component, call `useGetJobsListingQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetJobsListingQuery` returns an object from Apollo Client that contains result, loading and error properties
+ * you can use to render your UI.
+ *
+ * @param options that will be passed into the query, supported options are listed on: https://v4.apollo.vuejs.org/guide-composable/query.html#options;
+ *
+ * @example
+ * const { result, loading, error } = useGetJobsListingQuery();
+ */
+export function useGetJobsListingQuery(options: VueApolloComposable.UseQueryOptions<GetJobsListingQuery, GetJobsListingQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetJobsListingQuery, GetJobsListingQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetJobsListingQuery, GetJobsListingQueryVariables>> = {}) {
+  return VueApolloComposable.useQuery<GetJobsListingQuery, GetJobsListingQueryVariables>(GetJobsListingDocument, {}, options);
+}
+export function useGetJobsListingLazyQuery(options: VueApolloComposable.UseQueryOptions<GetJobsListingQuery, GetJobsListingQueryVariables> | VueCompositionApi.Ref<VueApolloComposable.UseQueryOptions<GetJobsListingQuery, GetJobsListingQueryVariables>> | ReactiveFunction<VueApolloComposable.UseQueryOptions<GetJobsListingQuery, GetJobsListingQueryVariables>> = {}) {
+  return VueApolloComposable.useLazyQuery<GetJobsListingQuery, GetJobsListingQueryVariables>(GetJobsListingDocument, {}, options);
+}
+export type GetJobsListingQueryCompositionFunctionResult = VueApolloComposable.UseQueryReturn<GetJobsListingQuery, GetJobsListingQueryVariables>;
 export const GetOneJobDocument = gql`
     query GetOneJob($id: String!) {
   findOneJob(id: $id) {
